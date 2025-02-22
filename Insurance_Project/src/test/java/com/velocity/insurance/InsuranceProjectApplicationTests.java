@@ -1,10 +1,10 @@
-package com.example.demo;
+package com.velocity.insurance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class InsuranceManagementSystemApplicationTests {
+class InsuranceProjectApplicationTests {
 
 	@Test
 	void contextLoads() {
