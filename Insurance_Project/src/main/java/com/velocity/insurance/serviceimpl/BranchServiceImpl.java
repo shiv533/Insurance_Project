@@ -20,4 +20,10 @@ public class BranchServiceImpl implements BranchService {
 		return br;
 	}
 
+	@Override
+	public Branch updateBranch(Branch branch) {
+		Branch br=branchRepository.save(branch);
+		return br;
+	}
+
 }

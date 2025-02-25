@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +22,12 @@ public class BranchController {
 		Branch savedBranch = branchService.saveBranch(branch);
 		return new ResponseEntity<>(savedBranch, HttpStatus.CREATED);
 	}
+	
+	// Restful web service to update branch data
+	   
+	    @PutMapping("/update")
+		public Branch updateBranch(@RequestBody Branch branch) {
+			Branch br=branchService.updateBranch(branch);
+			return br;
+		}
 }
