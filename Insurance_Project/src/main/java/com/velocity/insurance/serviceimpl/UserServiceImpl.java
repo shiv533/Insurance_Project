@@ -18,5 +18,8 @@ private UserRepository userRepository;
 		return user1;
 		
 	}
+	public void deleteUser(Integer Id) {
+		userRepository.deleteById(Id);
+	}
 
 }

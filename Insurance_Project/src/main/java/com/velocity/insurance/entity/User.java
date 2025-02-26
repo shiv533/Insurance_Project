@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -21,17 +22,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	@SequenceGenerator(name="user_seq", sequenceName= "user_seq", allocationSize=1)
-private Integer userId;
+private Integer Id;
 private String name;
 private String email;
-@ManyToMany(cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
 private Set<Nominee> nomineeList;
 
 public Integer getUserId() {
-	return userId;
+	return Id;
 }
 public void setUserId(Integer userId) {
-	this.userId = userId;
+	this.Id = userId;
 }
 public String getName() {
 	return name;
@@ -54,7 +55,7 @@ public void setNomineeList(Set<Nominee> nomineeList) {
 }
 @Override
 public String toString() {
-	return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", nomineeList=" + nomineeList + "]";
+	return "User [userId=" + Id + ", name=" + name + ", email=" + email + ", nomineeList=" + nomineeList + "]";
 }
 
 

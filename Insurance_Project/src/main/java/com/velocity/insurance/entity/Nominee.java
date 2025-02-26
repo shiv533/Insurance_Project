@@ -18,9 +18,7 @@ public class Nominee {
 	private Integer nomineeId;
 	private String name;
 	private String status;
-	@ManyToMany(mappedBy = "nomineeList")
-	private Set<User> userList;
-	
+	private Integer userid;
 	
 	public Integer getNomineeId() {
 		return nomineeId;
@@ -40,15 +38,15 @@ public class Nominee {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Set<User> getUserList() {
-		return userList;
+	public Integer getUserList() {
+		return userid;
 	}
 	public void setUserList(Set<User> userList) {
-		this.userList = userList;
+		this.userid = userid;
 	}
 	@Override
 	public String toString() {
-		return "Nominee [nomineeId=" + nomineeId + ", name=" + name + ", status=" + status + ", userList=" + userList
+		return "Nominee [nomineeId=" + nomineeId + ", name=" + name + ", status=" + status + ", userList=" + userid
 				+ "]";
 	}
 	
