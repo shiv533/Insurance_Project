@@ -3,6 +3,8 @@ package com.velocity.insurance.restcontroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,4 +32,13 @@ public class BranchController {
 			Branch br=branchService.updateBranch(branch);
 			return br;
 		}
+	    
+	    
+	  // // Restful web service to fetch  branch data by id
+	    
+	    @GetMapping("/get/{id}") 
+	    public Branch getBranchById(@PathVariable("id") Long id) { 
+	    Branch branch = branchService.getBranchbyId(id); 
+	    return branch; 
+	    } 
 }
