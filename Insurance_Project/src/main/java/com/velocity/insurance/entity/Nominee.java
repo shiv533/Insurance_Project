@@ -1,15 +1,14 @@
 package com.velocity.insurance.entity;
 
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name ="nominee")
 public class Nominee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nominees_seq")
@@ -18,10 +17,20 @@ public class Nominee {
 	private Integer nomineeId;
 	private String name;
 	private String status;
-	@ManyToMany(mappedBy = "nomineeList")
-	private Set<User> userList;
+
+    private Integer userId;
+
+	
+//	@ManyToMany(mappedBy = "nomineeList")
+//	private Set<User> userList;
 	
 	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId1) {
+		this.userId = userId1;
+	}
 	public Integer getNomineeId() {
 		return nomineeId;
 	}
@@ -40,17 +49,12 @@ public class Nominee {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Set<User> getUserList() {
-		return userList;
-	}
-	public void setUserList(Set<User> userList) {
-		this.userList = userList;
-	}
 	@Override
 	public String toString() {
-		return "Nominee [nomineeId=" + nomineeId + ", name=" + name + ", status=" + status + ", userList=" + userList
-				+ "]";
+		return "Nominee [nomineeId=" + nomineeId + ", name=" + name + ", status=" + status + ", userId=" + userId + "]";
 	}
+	
+	
 	
 
 
