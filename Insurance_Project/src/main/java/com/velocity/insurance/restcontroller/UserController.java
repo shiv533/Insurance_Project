@@ -56,11 +56,13 @@ public class UserController {
 //	
 //		User user1 = userService.saveUser(user);
 //		return user1;
-   @DeleteMapping("/deleteUserPolicyNominee/{Id}")
-	public void deleteUserPolicy(@PathVariable("Id")Integer Id) {
-		userService.deleteUser(Id);
-		}
+   
 //		
 //	}
+	@DeleteMapping("/deleteUserNominee/{id}")
+	public void deleteUserPolicy(@PathVariable("id")Integer Id) {
+		userService.deleteUser(Id);
+		
+		}
 
 }
