@@ -1,15 +1,14 @@
 package com.velocity.insurance.entity;
 
-import java.util.Set;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name ="nominee")
 public class Nominee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nominees_seq")
@@ -18,7 +17,9 @@ public class Nominee {
 	private Integer nomineeId;
 	private String name;
 	private String status;
-	private Integer userid;
+
+    private Integer userid;
+	
 	
 	public Integer getNomineeId() {
 		return nomineeId;
@@ -38,6 +39,7 @@ public class Nominee {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public Integer getUserid() {
 		return userid;
 	}
@@ -49,7 +51,5 @@ public class Nominee {
 		return "Nominee [nomineeId=" + nomineeId + ", name=" + name + ", status=" + status + ", userList=" + userid
 				+ "]";
 	}
-	
-
 
 }

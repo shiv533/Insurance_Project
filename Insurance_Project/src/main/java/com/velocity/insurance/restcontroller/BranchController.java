@@ -19,6 +19,8 @@ public class BranchController {
 	@Autowired
 	private BranchService branchService;
 
+	//@Author Satish 
+	// Restful web service to save branch data
 	@PostMapping("/save")
 	public ResponseEntity<Branch> saveBranch(@RequestBody Branch branch) {
 		Branch savedBranch = branchService.saveBranch(branch);

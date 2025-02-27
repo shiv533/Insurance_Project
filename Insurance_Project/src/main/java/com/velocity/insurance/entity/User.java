@@ -1,10 +1,9 @@
 package com.velocity.insurance.entity;
 
-
-
+import java.util.List;
 import java.util.Set;
 
-
+import org.hibernate.annotations.Proxy;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -17,10 +16,11 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="UserList")
+@Table(name = "users")
+
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 private Integer Id;
 private String name;
 private String email;
