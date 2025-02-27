@@ -27,9 +27,11 @@ public class UserServiceImpl implements UserService {
 	public User getUserById(Integer id) {
 		User find = userRepository.getById(id);
 		return find;
+
 	}
 	public void deleteUser(Integer Id) {
 		userRepository.deleteById(Id);
+
 	}
 
 }

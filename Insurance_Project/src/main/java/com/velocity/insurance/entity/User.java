@@ -18,44 +18,54 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users")
 
+@Proxy(lazy = false)
 public class User {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-private Integer Id;
-private String name;
-private String email;
-@OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
-private Set<Nominee> nomineeList;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+	private Integer id;
+	private String name;
+	private String email;
 
-public Integer getId() {
-	return Id;
-}
-public void setId(Integer Id) {
-	this.Id = Id;
-}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public String getEmail() {
-	return email;
-}
-public void setEmail(String email) {
-	this.email = email;
-}
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Nominee> nominees;
 
-public Set<Nominee> getNomineeList() {
-	return nomineeList;
-}
-public void setNomineeList(Set<Nominee> nomineeList) {
-	this.nomineeList = nomineeList;
-}
-@Override
-public String toString() {
-	return "User [userId=" + Id + ", name=" + name + ", email=" + email + ", nomineeList=" + nomineeList + "]";
-}
+	public Integer getUserId() {
+		return id;
+	}
 
+
+	public void setUserId(Integer userId) {
+		this.id = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Nominee> getNominees() {
+		return nominees;
+	}
+
+	public void setNominees(List<Nominee> nominees) {
+		this.nominees = nominees;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + id + ", name=" + name + ", email=" + email + ", nomineeList=" + nominees + "]";
+	}
 
 }
