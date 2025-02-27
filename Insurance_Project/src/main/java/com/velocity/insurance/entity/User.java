@@ -20,19 +20,18 @@ import jakarta.persistence.Table;
 @Table(name="UserList")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-	@SequenceGenerator(name="user_seq", sequenceName= "user_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 private Integer Id;
 private String name;
 private String email;
 @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL, orphanRemoval = true)
 private Set<Nominee> nomineeList;
 
-public Integer getUserId() {
+public Integer getId() {
 	return Id;
 }
-public void setUserId(Integer userId) {
-	this.Id = userId;
+public void setId(Integer Id) {
+	this.Id = Id;
 }
 public String getName() {
 	return name;

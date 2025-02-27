@@ -38,10 +38,10 @@ public class Nominee {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getUserList() {
+	public Integer getUserid() {
 		return userid;
 	}
-	public void setUserList(Set<User> userList) {
+	public void setUserid(Integer id) {
 		this.userid = userid;
 	}
 	@Override
