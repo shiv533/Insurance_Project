@@ -34,4 +34,12 @@ public class BranchServiceImpl implements BranchService {
 		return branch.orElse(null);
 	}
 
+		    //@Author Kaveri
+	@Override
+	public void deleteBranchbyId(Long id) {
+		// TODO Auto-generated method stub
+		branchRepository.deleteById(id);
+
+	}
+
 }
