@@ -1,10 +1,9 @@
 package com.velocity.insurance.entity;
 
-
-
+import java.util.List;
 import java.util.Set;
 
-
+import org.hibernate.annotations.Proxy;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -12,50 +11,61 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="UserList")
+@Table(name = "users")
+
+@Proxy(lazy = false)
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-	@SequenceGenerator(name="user_seq", sequenceName= "user_seq", allocationSize=1)
-private Integer userId;
-private String name;
-private String email;
-@ManyToMany(cascade = CascadeType.ALL)
-private Set<Nominee> nomineeList;
+	@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+	private Integer id;
+	private String name;
+	private String email;
 
-public Integer getUserId() {
-	return userId;
-}
-public void setUserId(Integer userId) {
-	this.userId = userId;
-}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public String getEmail() {
-	return email;
-}
-public void setEmail(String email) {
-	this.email = email;
-}
+	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Nominee> nominees;
 
-public Set<Nominee> getNomineeList() {
-	return nomineeList;
-}
-public void setNomineeList(Set<Nominee> nomineeList) {
-	this.nomineeList = nomineeList;
-}
-@Override
-public String toString() {
-	return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", nomineeList=" + nomineeList + "]";
-}
+	public Integer getUserId() {
+		return id;
+	}
 
+
+	public void setUserId(Integer userId) {
+		this.id = userId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Nominee> getNominees() {
+		return nominees;
+	}
+
+	public void setNominees(List<Nominee> nominees) {
+		this.nominees = nominees;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + id + ", name=" + name + ", email=" + email + ", nomineeList=" + nominees + "]";
+	}
 
 }
