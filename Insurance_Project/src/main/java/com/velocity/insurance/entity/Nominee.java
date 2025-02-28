@@ -1,4 +1,5 @@
 package com.velocity.insurance.entity;
+    //@Author Kaveri
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

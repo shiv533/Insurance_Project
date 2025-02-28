@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.velocity.insurance.entity.Nominee;
 import com.velocity.insurance.repository.NomineeRepository;
 import com.velocity.insurance.service.NomineeService;
+    //@Author Kaveri
 
 @Service
 public class NomineeServiceImpl implements NomineeService {
