@@ -16,7 +16,7 @@ public class Bill {
 	@SequenceGenerator(name = "bill_seq", sequenceName = "bill_seq", allocationSize = 1)
 	private Long id;
 
-    
+
     private Long billId;
     private String orderName;
     private String gstNumber;
