@@ -12,6 +12,11 @@ public interface UserService {
 	public User getUserById(Integer id);
 
 
+	// Method for update user details 
+	
+		public User updateUser(User user);
+
+	}
+	
 
 
-}

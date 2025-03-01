@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.velocity.insurance.entity.Nominee;
 import com.velocity.insurance.entity.User;
+import com.velocity.insurance.repository.NomineeRepository;
 import com.velocity.insurance.repository.UserRepository;
 import com.velocity.insurance.service.UserService;
 
@@ -16,6 +18,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+    private NomineeRepository nomineeRepository;
+	
 	@Override
 	public User saveUser(User user) {
 
@@ -35,4 +40,26 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-}
+	
+	// Update user with multiple nominees
+	 @Override
+	    public User updateUser(User user) {
+	        User existingUser = userRepository.findById(user.getUserId())
+	                .orElseThrow(() -> new RuntimeException("User not found"));
+
+	        // Update user details
+	        existingUser.setName(user.getName());
+	        existingUser.setEmail(user.getEmail());
+
+	        // Update nominees: remove existing and add updated ones
+	        nomineeRepository.deleteAllByUserId(existingUser.getUserId());
+	        for (Nominee nominee : user.getNominees()) {
+	            nominee.setUserId(existingUser.getUserId());
+	            nomineeRepository.save(nominee);
+	        }
+
+	        return userRepository.save(existingUser);
+	    }
+	}
+
+

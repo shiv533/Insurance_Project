@@ -7,5 +7,6 @@ import com.velocity.insurance.entity.Nominee;
 @Repository 
 public interface NomineeRepository extends JpaRepository<Nominee, Integer> {
 	
+	void deleteAllByUserId(Integer userId); // Add this line
 
 }

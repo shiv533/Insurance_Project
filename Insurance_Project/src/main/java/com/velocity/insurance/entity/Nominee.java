@@ -1,10 +1,13 @@
 package com.velocity.insurance.entity;
     //@Author Kaveri
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -51,6 +54,7 @@ public class Nominee {
 		this.status = status;
 	}
 
+	
 
 	
 	@Override
