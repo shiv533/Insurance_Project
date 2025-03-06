@@ -1,6 +1,7 @@
 package com.velocity.insurance.restcontroller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -72,5 +73,29 @@ public class UserController {
 	        User updatedUser = userService.updateUser(user);
 	        return ResponseEntity.ok(updatedUser);
 	    }
+	 
+	 
+		// @Author Satish
+	// Get user by first name
+	    @GetMapping("/fname/{firstName}")
+	    public ResponseEntity<User> getUserByFirstName(@PathVariable String firstName) {
+	        Optional<User> user = userService.getUserByFirstName(firstName);
+	        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    }
 
+		// @Author Satish
+	    // Get user by last name
+	    @GetMapping("/lname/{lastName}")
+	    public ResponseEntity<User> getUserByLastName(@PathVariable String lastName) {
+	        Optional<User> user = userService.getUserByLastName(lastName);
+	        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    }
+
+		// @Author Satish
+	    // Get user by email ID
+	    @GetMapping("/email/{emailId}")
+	    public ResponseEntity<User> getUserByEmailId(@PathVariable String emailId) {
+	        Optional<User> user = userService.getUserByEmailId(emailId);
+	        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    }
 }

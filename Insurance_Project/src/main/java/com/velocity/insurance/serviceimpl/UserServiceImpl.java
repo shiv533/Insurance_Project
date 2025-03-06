@@ -1,6 +1,8 @@
 package com.velocity.insurance.serviceimpl;
 //	    //@Author Kaveri
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +61,22 @@ public class UserServiceImpl implements UserService {
 
 	        return userRepository.save(existingUser);
 	    }
+
+	 @Override
+	    public Optional<User> getUserByFirstName(String firstName) {
+	        return userRepository.findByFirstName(firstName);
+	    }
+
+	    @Override
+	    public Optional<User> getUserByLastName(String lastName) {
+	        return userRepository.findByLastName(lastName);
+	    }
+
+	    @Override
+	    public Optional<User> getUserByEmailId(String emailId) {
+	        return userRepository.findByEmailId(emailId);
+	    }
+	
 	}
 
 
