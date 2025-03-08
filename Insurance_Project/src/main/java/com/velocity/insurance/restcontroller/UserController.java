@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.velocity.insurance.entity.Claim;
 import com.velocity.insurance.entity.Nominee;
 import com.velocity.insurance.entity.User;
+import com.velocity.insurance.service.ClaimService;
 import com.velocity.insurance.service.NomineeService;
 import com.velocity.insurance.service.UserService;
 
@@ -28,6 +31,10 @@ public class UserController {
 
 	@Autowired
 	public NomineeService nomineeService;
+	
+
+	@Autowired
+	private ClaimService claimService;
 
 	// Design Service to add user with multiple nominee details into system
 
@@ -36,15 +43,23 @@ public class UserController {
 		User savedUser = userService.saveUser(user);
 		List<Nominee> nominies = user.getNominees();
 		for (Nominee nominee : nominies) {
-			nominee.setUserId(user.getUserId());
+			nominee.setUserId(user.getId());
 			nomineeService.saveNominee(nominee);
 		}
 		return ResponseEntity.ok().body(savedUser);
 	}
 
-	// @Author Satish
-
-	// Design Service to get user with multiple nominee details from system
+	@Transactional
+	@PostMapping("/saveUserClaim")
+	ResponseEntity<User>  addUser(@RequestBody User user) {
+		User user2 = userService.saveUser(user);
+		List<Claim> claims = user.getClaimList();
+		for (Claim claim : claims) {
+			claim.setInsuranceId(user.getId());
+			claimService.saveClaim(claim);	
+		}
+		return ResponseEntity.ok().body(user2);
+	}
 
 	@GetMapping("/get/{id}")
 	public User getUserById(@PathVariable("id") Integer id) {

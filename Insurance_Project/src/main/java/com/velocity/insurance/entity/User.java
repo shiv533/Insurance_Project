@@ -30,14 +30,16 @@ public class User {
 
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Nominee> nominees;
+	
+	@OneToMany(mappedBy = "InsuranceId", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Claim> claimList;
 
-	public Integer getUserId() {
+	public Integer getId() {
 		return id;
 	}
 
-
-	public void setUserId(Integer userId) {
-		this.id = userId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -64,9 +66,18 @@ public class User {
 		this.nominees = nominees;
 	}
 
+	public List<Claim> getClaimList() {
+		return claimList;
+	}
+
+	public void setClaimList(List<Claim> claimList) {
+		this.claimList = claimList;
+	}
+
 	@Override
 	public String toString() {
-		return "User [userId=" + id + ", name=" + name + ", email=" + email + ", nomineeList=" + nominees + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", nominees=" + nominees + ", claimList="
+				+ claimList + "]";
 	}
 
 }

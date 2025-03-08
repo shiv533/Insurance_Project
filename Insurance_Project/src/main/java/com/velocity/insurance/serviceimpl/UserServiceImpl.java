@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	// Update user with multiple nominees
 	 @Override
 	    public User updateUser(User user) {
-	        User existingUser = userRepository.findById(user.getUserId())
+	        User existingUser = userRepository.findById(user.getId())
 	                .orElseThrow(() -> new RuntimeException("User not found"));
 
 	        // Update user details
@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService {
 	        existingUser.setEmail(user.getEmail());
 
 	        // Update nominees: remove existing and add updated ones
-	        nomineeRepository.deleteAllByUserId(existingUser.getUserId());
+	        nomineeRepository.deleteAllByUserId(existingUser.getId());
 	        for (Nominee nominee : user.getNominees()) {
-	            nominee.setUserId(existingUser.getUserId());
+	            nominee.setUserId(existingUser.getId());
 	            nomineeRepository.save(nominee);
 	        }
 
