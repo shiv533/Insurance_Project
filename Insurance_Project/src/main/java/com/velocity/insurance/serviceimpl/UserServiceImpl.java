@@ -1,7 +1,6 @@
 package com.velocity.insurance.serviceimpl;
 //	    //@Author Kaveri
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +47,10 @@ public class UserServiceImpl implements UserService {
 	                .orElseThrow(() -> new RuntimeException("User not found"));
 
 	        // Update user details
-	        existingUser.setName(user.getName());
-	        existingUser.setEmail(user.getEmail());
+	        existingUser.setFirstName(user.getFirstName());
+	        existingUser.setLastName(user.getLastName());
+	        existingUser.setEmailId(user.getEmailId());
+	        existingUser.setMobileNo(user.getMobileNo());
 
 	        // Update nominees: remove existing and add updated ones
 	        nomineeRepository.deleteAllByUserId(existingUser.getId());
@@ -60,6 +61,22 @@ public class UserServiceImpl implements UserService {
 
 	        return userRepository.save(existingUser);
 	    }
+
+	 @Override
+	    public Optional<User> getUserByFirstName(String firstName) {
+	        return userRepository.findByFirstName(firstName);
+	    }
+
+	    @Override
+	    public Optional<User> getUserByLastName(String lastName) {
+	        return userRepository.findByLastName(lastName);
+	    }
+
+	    @Override
+	    public Optional<User> getUserByEmailId(String emailId) {
+	        return userRepository.findByEmailId(emailId);
+	    }
+	
 	}
 
 
