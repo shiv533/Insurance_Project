@@ -59,6 +59,7 @@ public class User {
 	}
 
 
+
 	public void setId(Integer id) {
 		this.id = id;}
 
@@ -107,6 +108,7 @@ public class User {
 		this.nominees = nominees;
 	}
 
+
 	public List<Claim> getClaimList() {
 		return claimList;
 	}
@@ -121,8 +123,5 @@ public class User {
 				+ ", mobileNo=" + mobileNo + ", nominees=" + nominees + ", claimList=" + claimList + ", policies="
 				+ policies + "]";
 	}
-
-	
-
 
 }
