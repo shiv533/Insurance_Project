@@ -35,6 +35,40 @@ public class User {
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Nominee> nominees;
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Policy> policies;
+
+	
+
+	public List<Policy> getPolicies() {
+		return policies;
+	}
+
+	public void setPolicies(List<Policy> policies) {
+		this.policies = policies;
+	}
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Policy> policies;
+
+	
+
+	public List<Policy> getPolicies() {
+		return policies;
+	}
+
+	public void setPolicies(List<Policy> policies) {
+		this.policies = policies;
+	}
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
 
 	@OneToMany(mappedBy = "InsuranceId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Claim> claimList;
@@ -58,11 +92,17 @@ public class User {
 		return id;
 	}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 
 	public void setId(Integer id) {
 		this.id = id;}
 
+=======
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
+=======
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
 	public void setUserId(Integer userId) {
 		this.id = userId;
 
@@ -108,7 +148,12 @@ public class User {
 		this.nominees = nominees;
 	}
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 684842c329a9f277ffe6e9b518f17aba12e807e8
 	public List<Claim> getClaimList() {
 		return claimList;
 	}
@@ -124,4 +169,26 @@ public class User {
 				+ policies + "]";
 	}
 
+<<<<<<< HEAD
+=======
+	
+
+=======
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+				+ ", mobileNo=" + mobileNo + ", nominees=" + nominees + "]";
+	}
+
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
+=======
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+				+ ", mobileNo=" + mobileNo + ", nominees=" + nominees + "]";
+	}
+
+>>>>>>> 707b5ff46e5518b93ede3d48235ffd71c0e8bddd
+
+>>>>>>> 684842c329a9f277ffe6e9b518f17aba12e807e8
 }
