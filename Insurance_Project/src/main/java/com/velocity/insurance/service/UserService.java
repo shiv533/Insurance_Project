@@ -20,5 +20,8 @@ public interface UserService {
 	// Method for update user details
 
 	public User updateUser(User user);
+	
+	Optional<User> getUserByUsername(String username);
+
 
 }

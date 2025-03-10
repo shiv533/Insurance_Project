@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.velocity.insurance.entity.AuditLog;
 import com.velocity.insurance.entity.Claim;
 import com.velocity.insurance.entity.Nominee;
 import com.velocity.insurance.entity.User;
+import com.velocity.insurance.repository.AuditLogRepository;
 import com.velocity.insurance.service.ClaimService;
 import com.velocity.insurance.service.NomineeService;
 import com.velocity.insurance.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -36,6 +40,9 @@ public class UserController {
 
 	@Autowired
 	private ClaimService claimService;
+	
+	@Autowired
+	private AuditLogRepository auditLogrepository;
 
 	// Design Service to add user with multiple nominee details into system
 
@@ -112,5 +119,32 @@ public class UserController {
 	    public ResponseEntity<User> getUserByEmailId(@PathVariable String emailId) {
 	        Optional<User> user = userService.getUserByEmailId(emailId);
 	        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+	    }
+	    
+	 // Login endpoint
+//	    @PostMapping("/login")
+//	    public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
+//	        Optional<User> user = userService.getUserByUsername(loginRequest.getUsername());
+//
+//	        if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
+//	            return ResponseEntity.ok("Login successful");
+//	        } else {
+//	            return ResponseEntity.status(401).body("Invalid username or password");
+//	        }
+//	    }
+	    
+	    @PostMapping("/login")
+	    public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
+	        Optional<User> user = userService.getUserByUsername(loginRequest.getUsername());
+
+	        if (user.isPresent() && user.get().getPassword().equals(loginRequest.getPassword())) {
+	            // Successful login
+	            auditLogrepository.save(new AuditLog(loginRequest.getUsername(), "SUCCESS"));
+	            return ResponseEntity.ok("Login successful");
+	        } else {
+	            // Failed login
+	            auditLogrepository.save(new AuditLog(loginRequest.getUsername(), "FAILED"));
+	            return ResponseEntity.status(401).body("Invalid username or password");
+	        }
 	    }
 }

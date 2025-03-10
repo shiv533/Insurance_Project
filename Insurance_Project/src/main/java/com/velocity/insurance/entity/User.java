@@ -31,6 +31,8 @@ public class User {
 	private String lastName;
 	private String emailId;
 	private String mobileNo;
+	private String username;
+	private String password;
 
 	@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Nominee> nominees;
@@ -114,13 +116,27 @@ public class User {
 	public void setClaimList(List<Claim> claimList) {
 		this.claimList = claimList;
 	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public String getPassword() {
+		return password;
+	}public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
-				+ ", mobileNo=" + mobileNo + ", nominees=" + nominees + ", claimList=" + claimList + ", policies="
-				+ policies + "]";
+				+ ", mobileNo=" + mobileNo + ", username=" + username + ", password=" + password + ", nominees="
+				+ nominees + ", claimList=" + claimList + ", policies=" + policies + "]";
 	}
+
+	
 
 
 }
